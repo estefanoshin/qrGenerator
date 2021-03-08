@@ -8,6 +8,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import com.google.zxing.EncodeHintType;
+
 import net.glxn.qrgen.javase.QRCode;
 
 public final class Main {
@@ -22,7 +24,8 @@ public final class Main {
 	private static void generateQRCodeImage(String barcodeText) {
 		try {
 			ByteArrayOutputStream stream = QRCode.from(barcodeText)
-				.withSize(150, 150)
+				.withSize(250, 250)
+				.withHint(EncodeHintType.MARGIN, 0)
 				.stream();
 			ByteArrayInputStream bis = new ByteArrayInputStream(stream.toByteArray());
 			BufferedImage img = ImageIO.read(bis);
